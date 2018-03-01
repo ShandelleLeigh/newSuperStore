@@ -1,0 +1,12 @@
+<h1><%= @department.name %> - <%= @product.name %></h1>
+<p><%= @product.body %></p>
+<%= link_to 'Add Comment', new_product_comment_path(@product) %>
+
+<% @product.comments.each_with_index do |c, index| %>
+  <%= render 'comments/comment', { comment: c, i: index + 1, comment_count: @product.comments.count } %>
+<% end %>
+
+<hr />
+<%= link_to 'Edit Product', edit_department_product_path(@department, @product) %>
+<%= link_to 'Delete Product', [@department, @product], method: :delete %>
+<%= link_to 'Back To Products', department_products_path(@department) %>
